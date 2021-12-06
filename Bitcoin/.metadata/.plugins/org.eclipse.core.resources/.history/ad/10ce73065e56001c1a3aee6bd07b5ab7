@@ -1,0 +1,19 @@
+package com.trade.coin.model;
+
+public class GetTime {
+	public boolean getTime() {
+		LocalTime now = LocalTime.now();
+		// 현재시간 출력
+		System.out.println(now); // 06:25:59.985969400
+		// 시, 분, 초 구하기
+		int hour = now.getHour();
+		int minute = now.getMinute();
+		int second = now.getSecond();
+		// 시, 분, 초 출력
+		System.out.println(hour); // 6
+		System.out.println(minute); // 25
+		System.out.println(second); // 59
+
+		출처: https://hianna.tistory.com/607 [어제 오늘 내일]
+	}
+}

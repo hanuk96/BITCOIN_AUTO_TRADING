@@ -1,0 +1,18 @@
+package com.trade.coin.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.trade.coin.model.MyAccount;
+
+@RestController
+public class AccountController {
+	@GetMapping("https://api.upbit.com/v1/accounts")
+	public ResponseEntity<List<MyAccount>> showAllAccounts(){ 
+		return ResponseEntity.ok(accountClient.getAccounts()); 
+		} 
+	}
+}

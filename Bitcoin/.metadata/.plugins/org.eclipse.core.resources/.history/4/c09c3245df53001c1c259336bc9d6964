@@ -1,0 +1,16 @@
+package com.trade.coin.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class MyAccount {
+	private String currency; 
+	private String balance; 
+	private String locked; 
+	@JsonProperty("avg_buy_price") 
+	private String avgBuyPrice; 
+	@JsonProperty("avg_buy_price_modified") 
+	private Boolean avgBuyPriceModified; 
+	@JsonProperty("unit_currency") 
+	private String unitCurrency; 
+	
+}

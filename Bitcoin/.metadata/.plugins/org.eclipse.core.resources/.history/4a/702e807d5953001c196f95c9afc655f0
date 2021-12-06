@@ -1,0 +1,15 @@
+package com.trade.coin.model.mapper;
+
+import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import com.ssafy.happyhouse.model.HouseInfoDto;
+import com.ssafy.happyhouse.model.SidoGugunCodeDto;
+
+@Mapper
+public interface HouseDao {
+	void loadData();
+	List<SidoGugunCodeDto> getSido() throws Exception;
+	List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception;
+	List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
+	List<HouseInfoDto> getAptInDong(String dong) throws Exception;
+}

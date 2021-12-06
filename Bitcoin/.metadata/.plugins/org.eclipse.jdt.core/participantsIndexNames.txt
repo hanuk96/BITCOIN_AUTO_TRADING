@@ -1,0 +1,13 @@
+INDEX VERSION 1.131
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\655948025.index
+\BitCoin_Trader\src\main\java
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2518058195.index
+\BitCoin_Trader\src\main\java
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2476544997.index
+\BitCoin_Trader\src\main\java
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3298738613.index
+\BitCoin_Trader\src\main\java
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2887647551.index
+\BitCoin_Trader\src\main\java
+C:\Project\Bitcoin\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\165603140.index
+\BitCoin_Trader\src\main\java

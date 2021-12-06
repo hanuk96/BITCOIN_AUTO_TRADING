@@ -1,0 +1,16 @@
+package com.trade.coin.model.mapper;
+
+import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import com.ssafy.happyhouse.model.MemberDto;
+
+@Mapper
+public interface MemberDao {
+	void registerMember(MemberDto memberDto) throws Exception;
+	MemberDto login(MemberDto memberDto) throws Exception;
+	MemberDto getMember(String id) throws Exception;
+	void updateMember(MemberDto memberDto) throws Exception;
+	void deleteMember(String id) throws Exception;
+	List<MemberDto> listMember() throws Exception;
+	int idCheck(String checkId);
+}

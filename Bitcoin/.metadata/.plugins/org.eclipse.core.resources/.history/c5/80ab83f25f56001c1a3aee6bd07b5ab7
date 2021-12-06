@@ -1,0 +1,17 @@
+package com.trade.coin.model;
+
+import java.time.LocalTime;
+public class GetTime {
+	public boolean getTime() {
+		LocalTime now = LocalTime.now();
+		// 시, 분, 초 구하기
+		int hour = now.getHour();
+		int minute = now.getMinute();
+		int second = now.getSecond();
+		
+		if(hour == 15 && minute == 44 && (second >= 0 && second < 1))
+			return true;
+		else 
+			return false;
+	}
+}

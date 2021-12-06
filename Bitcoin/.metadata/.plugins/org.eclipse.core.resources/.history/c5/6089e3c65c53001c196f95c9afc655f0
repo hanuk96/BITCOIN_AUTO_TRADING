@@ -1,0 +1,28 @@
+package com.trade.coin;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.trade.coin.model.GetAccount;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.util.UUID;
+
+@SpringBootApplication
+public class BitCoinTraderApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BitCoinTraderApplication.class, args);
+		GetAccount getaccount = new GetAccount();
+		getaccount.getAllAccount();
+	}
+}

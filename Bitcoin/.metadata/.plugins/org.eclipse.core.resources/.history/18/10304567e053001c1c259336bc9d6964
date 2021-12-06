@@ -1,0 +1,11 @@
+package com.trade.coin.model.dto;
+
+public class MyAccount {
+	private String currency; 
+	private String balance; 
+	private String locked;
+	private String avgBuyPrice; 
+	private Boolean avgBuyPriceModified; 
+	private String unitCurrency; 
+	
+}
