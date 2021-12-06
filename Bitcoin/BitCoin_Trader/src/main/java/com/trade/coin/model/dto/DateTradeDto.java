@@ -66,6 +66,4 @@ public class DateTradeDto {
 	public void setPrevClosingPrice(Double prevClosingPrice) {
 		this.prevClosingPrice = prevClosingPrice;
 	}
-	
-	
 }
