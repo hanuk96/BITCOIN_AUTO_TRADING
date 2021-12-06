@@ -1,9 +1,0 @@
-package com.trade.coin.model;
-
-import com.trade.coin.model.dto.MyAccount;
-
-public class SellCoin {
-//	//내 계좌 조회
-//			GetAccount getaccount = new GetAccount();
-//			MyAccount account = getaccount.getAllAccount();
-}
