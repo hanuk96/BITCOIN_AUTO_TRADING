@@ -20,7 +20,7 @@ import java.util.UUID;
 public class GetAccount {
     public MyAccount getAllAccount() throws ParseException, org.json.simple.parser.ParseException {
     	String accessKey = "SECRET KEY";
-	String secretKey = "ACCESS KEY";
+	String secretKey = "SECRET KEY";
         String serverUrl = "https://api.upbit.com";
         
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
