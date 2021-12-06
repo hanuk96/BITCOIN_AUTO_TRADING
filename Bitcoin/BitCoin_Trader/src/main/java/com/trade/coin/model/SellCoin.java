@@ -32,52 +32,52 @@ public class SellCoin {
 		
 		if(Double.parseDouble(account.getBalance()) > 5000) {
 			String accessKey = "SECRET KEY";
-		    String secretKey = "ACCESS KEY";
-		    String serverUrl = "https://api.upbit.com";
-		    
-	        HashMap<String, String> params = new HashMap<>();
-	        params.put("market", "KRW-BTC");
-	        params.put("side", "ask");
-	        params.put("volume", "0.00008");//전량 매도
-	        params.put("ord_type", "market");
-	
-	        ArrayList<String> queryElements = new ArrayList<>();
-	        for(Map.Entry<String, String> entity : params.entrySet()) {
-	            queryElements.add(entity.getKey() + "=" + entity.getValue());
-	        }
-	
-	        String queryString = String.join("&", queryElements.toArray(new String[0]));
-	
-	        MessageDigest md = MessageDigest.getInstance("SHA-512");
-	        md.update(queryString.getBytes("UTF-8"));
-	
-	        String queryHash = String.format("%0128x", new BigInteger(1, md.digest()));
-	
-	        Algorithm algorithm = Algorithm.HMAC256(secretKey);
-	        String jwtToken = JWT.create()
-	                .withClaim("access_key", accessKey)
-	                .withClaim("nonce", UUID.randomUUID().toString())
-	                .withClaim("query_hash", queryHash)
-	                .withClaim("query_hash_alg", "SHA512")
-	                .sign(algorithm);
-	
-	        String authenticationToken = "Bearer " + jwtToken;
-	
-	        try {
-	            HttpClient client = HttpClientBuilder.create().build();
-	            HttpPost request = new HttpPost(serverUrl + "/v1/orders");
-	            request.setHeader("Content-Type", "application/json");
-	            request.addHeader("Authorization", authenticationToken);
-	            request.setEntity(new StringEntity(new Gson().toJson(params)));
-	
-	            HttpResponse response = client.execute(request);
-	            HttpEntity entity = response.getEntity();
-	
-	            System.out.println(EntityUtils.toString(entity, "UTF-8"));
-	            System.out.println("매도 완료!");
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+			String secretKey = "ACCESS KEY";
+			String serverUrl = "https://api.upbit.com";
+
+			HashMap<String, String> params = new HashMap<>();
+			params.put("market", "KRW-BTC");
+			params.put("side", "ask");
+			params.put("volume", "0.00008");//전량 매도 - 약 5000
+			params.put("ord_type", "market");
+
+			ArrayList<String> queryElements = new ArrayList<>();
+			for(Map.Entry<String, String> entity : params.entrySet()) {
+			    queryElements.add(entity.getKey() + "=" + entity.getValue());
+			}
+
+			String queryString = String.join("&", queryElements.toArray(new String[0]));
+
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(queryString.getBytes("UTF-8"));
+
+			String queryHash = String.format("%0128x", new BigInteger(1, md.digest()));
+
+			Algorithm algorithm = Algorithm.HMAC256(secretKey);
+			String jwtToken = JWT.create()
+				.withClaim("access_key", accessKey)
+				.withClaim("nonce", UUID.randomUUID().toString())
+				.withClaim("query_hash", queryHash)
+				.withClaim("query_hash_alg", "SHA512")
+				.sign(algorithm);
+
+			String authenticationToken = "Bearer " + jwtToken;
+
+			try {
+			    HttpClient client = HttpClientBuilder.create().build();
+			    HttpPost request = new HttpPost(serverUrl + "/v1/orders");
+			    request.setHeader("Content-Type", "application/json");
+			    request.addHeader("Authorization", authenticationToken);
+			    request.setEntity(new StringEntity(new Gson().toJson(params)));
+
+			    HttpResponse response = client.execute(request);
+			    HttpEntity entity = response.getEntity();
+
+			    System.out.println(EntityUtils.toString(entity, "UTF-8"));
+			    System.out.println("매도 완료!");
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
 		}
 		else {
 			System.out.println("팔수 있는 코인이 없습니다!");
