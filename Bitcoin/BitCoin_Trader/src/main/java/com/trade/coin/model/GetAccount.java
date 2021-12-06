@@ -20,7 +20,7 @@ import java.util.UUID;
 public class GetAccount {
     public MyAccount getAllAccount() throws ParseException, org.json.simple.parser.ParseException {
     	String accessKey = "SECRET KEY";
-	    String secretKey = "ACCESS KEY";
+	String secretKey = "ACCESS KEY";
         String serverUrl = "https://api.upbit.com";
         
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
@@ -28,34 +28,37 @@ public class GetAccount {
                 .withClaim("access_key", accessKey)
                 .withClaim("nonce", UUID.randomUUID().toString())
                 .sign(algorithm);
+	    
         String authenticationToken = "Bearer " + jwtToken;
         MyAccount account = null;
+	
         try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/v1/accounts");
-            request.setHeader("Content-Type", "application/json");
-            request.addHeader("Authorization", authenticationToken);
+		 HttpClient client = HttpClientBuilder.create().build();
+		 HttpGet request = new HttpGet(serverUrl + "/v1/accounts");
+		 request.setHeader("Content-Type", "application/json");
+		 request.addHeader("Authorization", authenticationToken);
 
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity, "UTF-8");
-            JSONParser jsonParse = new JSONParser();
-            JSONArray myaccount = (JSONArray) jsonParse.parse(result);
-           for (int i = 0; i < myaccount.size(); i++) {
-        	   Object obj = myaccount.get(i);
-        	   JSONObject jsonObj = (JSONObject) obj;
-        	   account = new MyAccount();
-        	   if(!((String) jsonObj.get("currency")).equals("KRW")) continue;
-        	   
-        	   account.setCurrency((String) jsonObj.get("currency"));
-        	   account.setAvgBuyPrice((String) jsonObj.get("avg_buy_price"));
-        	   account.setBalance((String) jsonObj.get("balance"));
-        	   account.setLocked((String) jsonObj.get("locked"));
-        	   account.setUnitCurrency((String) jsonObj.get("unit_currency"));
-        	   account.setAvgBuyPriceModified((boolean)jsonObj.get("avg_buy_price_modified"));
-        	   System.out.println(account);
-        	   break;
-           }
+		 HttpResponse response = client.execute(request);
+		 HttpEntity entity = response.getEntity();
+		 String result = EntityUtils.toString(entity, "UTF-8");
+         	JSONParser jsonParse = new JSONParser();
+         	JSONArray myaccount = (JSONArray) jsonParse.parse(result);
+	
+         for (int i = 0; i < myaccount.size(); i++) {
+		Object obj = myaccount.get(i);
+		JSONObject jsonObj = (JSONObject) obj;
+		account = new MyAccount();
+		if(!((String) jsonObj.get("currency")).equals("KRW")) continue;
+
+		account.setCurrency((String) jsonObj.get("currency"));
+		account.setAvgBuyPrice((String) jsonObj.get("avg_buy_price"));
+		account.setBalance((String) jsonObj.get("balance"));
+		account.setLocked((String) jsonObj.get("locked"));
+		account.setUnitCurrency((String) jsonObj.get("unit_currency"));
+		account.setAvgBuyPriceModified((boolean)jsonObj.get("avg_buy_price_modified"));
+		System.out.println(account);
+		break;
+        	}
         } catch (IOException e) {
             e.printStackTrace();
         }
